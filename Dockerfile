@@ -43,3 +43,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 SHELL ["/bin/bash", "-c"]
 RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 ENV ROS_DISTRO=jazzy
+
+COPY ./library/ /home/library
+WORKDIR /home/
