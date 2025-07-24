@@ -30,11 +30,11 @@ class KDTree {
 
 };
 
-float calcDistance(KDNode * node,  Eigen::Vector3f point) {
+inline float calcDistance(KDNode * node,  Eigen::Vector3f point) {
   return (sqrt(pow(point.x() - node->coordinate.x() ,2) + pow(point.y() - node->coordinate.y(), 2)));
 }
 
-KDNode* KDTree::buildTree(std::vector<Eigen::Vector3f> point_set, int depth, KDNode * parent_node) {
+inline KDNode* KDTree::buildTree(std::vector<Eigen::Vector3f> point_set, int depth, KDNode * parent_node) {
   //this root_node
   KDNode * node = new KDNode;
   node->left_node=NULL;
@@ -74,7 +74,7 @@ KDNode* KDTree::buildTree(std::vector<Eigen::Vector3f> point_set, int depth, KDN
   return node;
 }
 
-std::pair<KDNode*, float> KDTree::nearestNeighbor(Eigen::Vector3f input_pt) {
+inline std::pair<KDNode*, float> KDTree::nearestNeighbor(Eigen::Vector3f input_pt) {
   std::cout << "Input Point: " << input_pt[0] << ", " << input_pt[1] << std::endl;
   
   KDNode * iter = this->root_node; 
@@ -130,7 +130,7 @@ std::pair<KDNode*, float> KDTree::nearestNeighbor(Eigen::Vector3f input_pt) {
 
 }
 
-std::pair<KDNode*, float> KDTree::icp_nearest_neighbor(Eigen::Vector3f input_pt) {
+inline std::pair<KDNode*, float> KDTree::icp_nearest_neighbor(Eigen::Vector3f input_pt) {
   std::cout << "Input Point: " << input_pt[0] << ", " << input_pt[1] << std::endl;
   
   KDNode * iter = this->root_node; 
@@ -194,12 +194,6 @@ std::pair<KDNode*, float> KDTree::icp_nearest_neighbor(Eigen::Vector3f input_pt)
     }
   }
 
-
-
-
-
-
-  
   auto output = std::make_pair(nearest_neighbor, best_dist);
   return output; 
 
